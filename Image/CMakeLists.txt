@@ -21,5 +21,8 @@ target_sources(Image PRIVATE src/main.cpp)
 
 find_package(GTest CONFIG REQUIRED)
 add_executable(ImageTests)
-target_sources(ImageTests PRIVATE test/ImageTests.cpp)
+target_sources(ImageTests PRIVATE test/ImageTests.cpp
+                                 test/RGBATests.cpp
+                                 include/RGBA.h
+)
 target_link_libraries(ImageTests PRIVATE GTest::gtest GTest::gtest_main)
