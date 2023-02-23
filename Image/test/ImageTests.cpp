@@ -96,6 +96,10 @@ TEST(Image,set_get)
       
     }
   }
+  ASSERT_TRUE(img.save("test.tiff"));
+  ASSERT_TRUE(img.save("test.bmp"));
+  ASSERT_TRUE(img.save("test.jpg"));
+  ASSERT_TRUE(img.save("test.exr"));
 
 
   // img.setPixel(0,0,255,128,12,0);

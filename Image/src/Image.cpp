@@ -1,4 +1,22 @@
 #include "Image.h"
+#include <OpenImageIO/imageio.h>
+
+bool Image::save(std::string_view _fname) const
+{
+  bool success=false;
+  using namespace OIIO;
+  auto out = ImageOutput::create(_fname.data());
+  if(!out)
+  {
+    return false;
+  }
+  ImageSpec spec(m_width,m_height,4,TypeDesc::UINT8);
+  success=out->open(_fname.data(),spec);
+  success=out->write_image(TypeDesc::UINT8,m_pixels.get());
+  success=out->close();
+  return success;
+}
+
 
 Image::Image(int _w, int _h) : m_width{_w},m_height{_h}
 {
@@ -32,6 +50,8 @@ void Image::setPixel(int _x, int _y,unsigned char _r, unsigned char _g, unsigned
   m_pixels[index].a=_a;
   
 }
+
+
 
 
 
